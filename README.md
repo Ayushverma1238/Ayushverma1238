@@ -7,7 +7,7 @@
 ---
 
 ## 💫 About Me:
-💻 Aspiring Software Engineer | DSA Enthusiast  
+💻 Aspiring Software Engineer | DSA Enthusiast | MERN Stack Developer
 
 🚀 Passionate about solving complex problems and building scalable real-time applications  
 📈 Consistently improving through daily coding and hands-on projects  
