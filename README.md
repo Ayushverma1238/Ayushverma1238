@@ -19,13 +19,13 @@
 
 <br/>
 
-## 🐍 My Contribution Snake
+## 🟢 Live Commit Tracker
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/AyushVerma1238/AyushVerma1238/output/github-contribution-grid-snake.svg" alt="snake animation" />
+  <img src="https://raw.githubusercontent.com/AyushVerma1238/AyushVerma1238/output/contribution-dot.svg" alt="commit dot animation" />
 </p>
 
-> ⚠️ **Setup required** — the snake image only appears after you add the workflow below to your profile repo (one-time, ~2 minutes). See the *Snake Setup* section at the bottom of this message.
+> ⚠️ **Setup required** — this animation only appears after you add `generate-dot.js` + `dot.yml` to your profile repo (one-time, ~2 minutes). See the setup steps at the bottom of this message.
 
 <br/>
 
