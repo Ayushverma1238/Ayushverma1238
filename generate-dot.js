@@ -73,23 +73,27 @@ async function main() {
   // Chronological path through committed days only
   const pathD = points
     .map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`)
-    .join(" ") + " Z";
+    .join(" ");
 
-  const totalDur = Math.max(points.length * 0.15, 10).toFixed(1);
+  const totalDur = Math.max(points.length * 0.15, 12).toFixed(1);
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
   <style>
     .bg { fill: transparent; }
+    .trail {
+      fill: none;
+      stroke: #39d353;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 3px #39d353);
+    }
   </style>
   <rect class="bg" width="${width}" height="${height}" />
   ${rects}
-  <circle r="5" fill="#39d353" stroke="#0d1117" stroke-width="1.5">
-    <animateMotion dur="${totalDur}s" repeatCount="indefinite" path="${pathD}" rotate="auto" />
-  </circle>
-  <circle r="9" fill="#39d353" opacity="0.35">
-    <animateMotion dur="${totalDur}s" repeatCount="indefinite" path="${pathD}" rotate="auto" />
-    <animate attributeName="r" values="6;11;6" dur="1.1s" repeatCount="indefinite" />
-  </circle>
+  <path class="trail" d="${pathD}" pathLength="1000" stroke-dasharray="60 940">
+    <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="${totalDur}s" repeatCount="indefinite" />
+  </path>
 </svg>`;
 
   const fs = await import("node:fs");
