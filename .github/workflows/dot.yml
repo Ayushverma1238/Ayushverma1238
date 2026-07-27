@@ -24,7 +24,7 @@ jobs:
 
       - name: Generate dot animation
         env:
-          GH_USERNAME: AyushVerma1238
+          GH_USERNAME: Ayushverma1238
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node generate-dot.js
 
