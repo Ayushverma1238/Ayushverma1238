@@ -21,14 +21,6 @@
 
 ---
 
-# 🟢 Live Contribution Dot
-
-<p align="center">
-<img width="100%" src="https://raw.githubusercontent.com/Ayushverma1238/Ayushverma1238/output/contribution-dot.svg">
-</p>
-
----
-
 # 🐍 Contribution Snake
 
 <p align="center">
