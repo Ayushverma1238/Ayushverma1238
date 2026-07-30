@@ -97,7 +97,7 @@
 </p>
 
 <p align="center">
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=AyushVerma1238&theme=radical&hide_border=true"/>
+  <img src="https://github-readme-streak-stats-eight.vercel.app/?user=AyushVerma1238&theme=radical&hide_border=true" />
 </p>
 
 <p align="center">
