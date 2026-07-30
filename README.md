@@ -5,9 +5,9 @@
 </p>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=AyushVerma1238&style=for-the-badge&color=00F7FF&label=PROFILE+VIEWS"/>
-  <img src="https://img.shields.io/github/followers/AyushVerma1238?style=for-the-badge&color=00F7FF"/>
-  <img src="https://img.shields.io/github/stars/AyushVerma1238?style=for-the-badge&color=00F7FF"/>
+  <img src="https://komarev.com/ghpvc/?username=Ayushverma1238&style=for-the-badge&color=00F7FF&label=PROFILE+VIEWS"/>
+  <img src="https://img.shields.io/github/followers/Ayushverma1238?style=for-the-badge&color=00F7FF"/>
+  <img src="https://img.shields.io/github/stars/Ayushverma1238?style=for-the-badge&color=00F7FF"/>
 </p>
 
 ---
@@ -92,15 +92,15 @@
 # 📊 GitHub Analytics
 
 <p align="center">
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=AyushVerma1238&show_icons=true&theme=radical&hide_border=true&count_private=true"/>
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=AyushVerma1238&layout=compact&theme=radical&hide_border=true"/>
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=Ayushverma1238&show_icons=true&theme=radical&hide_border=true&count_private=true"/>
+<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Ayushverma1238&layout=compact&theme=radical&hide_border=true"/>
 </p>
 
 <p align="center">
-  <img src="https://github-streak-stats.demolab.com?user=AyushVerma1238&theme=radical&hide_border=true" />
+  <img src="https://github-streak-stats.demolab.com?user=Ayushverma1238&theme=radical&hide_border=true" />
 </p>
 <p align="center">
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=AyushVerma1238&theme=react-dark&hide_border=true"/>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Ayushverma1238&theme=react-dark&hide_border=true"/>
 </p>
 
 ---
@@ -108,7 +108,7 @@
 # 🏆 GitHub Trophies
 
 <p align="center">
-<img src="https://github-profile-trophy.vercel.app/?username=AyushVerma1238&theme=radical&row=1&column=7&no-frame=true"/>
+<img src="https://github-profile-trophy.vercel.app/?username=Ayushverma1238&theme=radical&row=1&column=7&no-frame=true"/>
 </p>
 
 ---
@@ -121,7 +121,7 @@
 <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin"/>
 </a>
 
-<a href="https://instagram.com/AyushVerma1238">
+<a href="https://instagram.com/Ayushverma1238">
 <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/>
 </a>
 
