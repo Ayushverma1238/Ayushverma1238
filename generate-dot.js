@@ -1,108 +1,75 @@
-// generate-dot.js
-// Fetches the real GitHub contribution calendar and renders an SVG
-// where a single dot travels cell-to-cell through days you actually
-// committed on (contributionCount > 0), looping forever.
+const totalDur = Math.max(points.length * 0.15, 12).toFixed(1);
 
-const username = process.env.GH_USERNAME;
-const token = process.env.GITHUB_TOKEN;
+const svg = `
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="${width}"
+     height="${height}"
+     viewBox="0 0 ${width} ${height}">
 
-if (!username || !token) {
-  console.error("Missing GH_USERNAME or GITHUB_TOKEN env vars");
-  process.exit(1);
-}
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
 
-const QUERY = `
-query($login: String!) {
-  user(login: $login) {
-    contributionsCollection {
-      contributionCalendar {
-        weeks {
-          contributionDays {
-            date
-            contributionCount
-            color
-          }
-        }
-      }
-    }
-  }
-}`;
+    <linearGradient id="trailGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="50%" stop-color="#39d353"/>
+      <stop offset="100%" stop-color="#7ee787"/>
+    </linearGradient>
+  </defs>
 
-async function main() {
-  const res = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    headers: {
-      Authorization: `bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query: QUERY, variables: { login: username } }),
-  });
+  <rect width="${width}" height="${height}" fill="transparent"/>
 
-  const json = await res.json();
-  if (json.errors) {
-    console.error(JSON.stringify(json.errors, null, 2));
-    process.exit(1);
-  }
-
-  const weeks = json.data.user.contributionsCollection.contributionCalendar.weeks;
-
-  const cell = 12;
-  const gap = 3;
-  const margin = 20;
-  const step = cell + gap;
-
-  const width = margin * 2 + weeks.length * step;
-  const height = margin * 2 + 7 * step;
-
-  // Build background grid + collect centers of days that actually have commits
-  let rects = "";
-  const points = [];
-
-  weeks.forEach((week, wi) => {
-    week.contributionDays.forEach((day, di) => {
-      const x = margin + wi * step;
-      const y = margin + di * step;
-      rects += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="${day.color}" />\n`;
-
-      if (day.contributionCount > 0) {
-        points.push({ x: x + cell / 2, y: y + cell / 2 });
-      }
-    });
-  });
-
-  // Chronological path through committed days only
-  const pathD = points
-    .map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`)
-    .join(" ");
-
-  const totalDur = Math.max(points.length * 0.15, 12).toFixed(1);
-
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-  <style>
-    .bg { fill: transparent; }
-    .trail {
-      fill: none;
-      stroke: #39d353;
-      stroke-width: 3;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      filter: drop-shadow(0 0 3px #39d353);
-    }
-  </style>
-  <rect class="bg" width="${width}" height="${height}" />
   ${rects}
-  <path class="trail" d="${pathD}" pathLength="1000" stroke-dasharray="60 940">
-    <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="${totalDur}s" repeatCount="indefinite" />
+
+  <!-- Invisible motion path -->
+  <path id="motionPath"
+        d="${pathD}"
+        fill="none"
+        stroke="none"/>
+
+  <!-- Animated glowing trail -->
+  <path
+      d="${pathD}"
+      fill="none"
+      stroke="url(#trailGradient)"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      pathLength="1000"
+      stroke-dasharray="100 900">
+
+      <animate
+          attributeName="stroke-dashoffset"
+          from="1000"
+          to="0"
+          dur="${totalDur}s"
+          repeatCount="indefinite"/>
   </path>
-</svg>`;
 
-  const fs = await import("node:fs");
-  fs.mkdirSync("dist", { recursive: true });
-  fs.writeFileSync("dist/contribution-dot.svg", svg);
-  console.log(`Wrote dist/contribution-dot.svg (${points.length} committed days, ${weeks.length} weeks)`);
-}
+  <!-- Moving Dot -->
+  <circle r="5" fill="#39d353" filter="url(#glow)">
+      <animateMotion
+          dur="${totalDur}s"
+          repeatCount="indefinite"
+          rotate="auto">
+          <mpath href="#motionPath"/>
+      </animateMotion>
+  </circle>
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+  <!-- White center -->
+  <circle r="2.5" fill="#ffffff">
+      <animateMotion
+          dur="${totalDur}s"
+          repeatCount="indefinite"
+          rotate="auto">
+          <mpath href="#motionPath"/>
+      </animateMotion>
+  </circle>
+
+</svg>
+`;
